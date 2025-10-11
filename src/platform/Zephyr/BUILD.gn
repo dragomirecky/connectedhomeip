@@ -50,6 +50,12 @@ static_library("Zephyr") {
     "SystemTimeSupport.cpp",
     "ZephyrConfig.cpp",
     "ZephyrConfig.h",
+    "wifi/ConnectivityManagerImplWiFi.cpp",
+    "wifi/ConnectivityManagerImplWiFi.h",
+    "wifi/WiFiManager.cpp",
+    "wifi/WiFiManager.h",
+    "wifi/ZephyrWifiDriver.cpp",
+    "wifi/ZephyrWifiDriver.h",
   ]
 
   public_deps = [ "${chip_root}/src/platform:platform_base" ]

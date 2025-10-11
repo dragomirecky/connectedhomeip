@@ -22,6 +22,8 @@
 
 #include "WiFiManager.h"
 
+#include <cassert>
+
 #include <crypto/RandUtils.h>
 #include <lib/support/logging/CHIPLogging.h>
 #include <platform/CHIPDeviceLayer.h>

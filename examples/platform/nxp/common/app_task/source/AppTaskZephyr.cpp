@@ -22,6 +22,7 @@
 #include "AppTaskZephyr.h"
 
 #include "CHIPDeviceManager.h"
+#include "lib/support/logging/TextOnlyLogging.h"
 #include <app/clusters/identify-server/identify-server.h>
 #include <credentials/DeviceAttestationCredsProvider.h>
 #include <credentials/examples/DeviceAttestationCredsExample.h>

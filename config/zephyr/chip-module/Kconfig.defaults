@@ -34,10 +34,6 @@ config HW_STACK_PROTECTION
 	bool
 	default y
 
-config FPU
-	bool
-	default y
-
 config SHELL
 	bool
 	default y

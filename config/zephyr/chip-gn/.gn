@@ -22,7 +22,7 @@ buildconfig = "${build_root}/config/BUILDCONFIG.gn"
 check_system_includes = true
 
 default_args = {
-  target_cpu = ""
+  target_cpu = "esp32"
   target_os = "zephyr"
 
   import("${chip_root}/config/zephyr/chip-gn/args.gni")

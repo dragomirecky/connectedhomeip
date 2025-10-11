@@ -19,30 +19,83 @@
 
 if CHIP
 
+config CHIP_WIFI
+	bool "Enable NXP Wi-Fi support"
+	default y
+	select WIFI
+	#select WIFI_NM_WPA_SUPPLICANT
+	#select NET_L2_ETHERNET
+	select NET_IPV4
+	select NET_DHCPV4
+	select DNS_RESOLVER
+	imply THREAD_CUSTOM_DATA
+	imply MBEDTLS_ENTROPY_C
+	imply NET_STATISTICS
+	imply NET_PKT_TXTIME
+	imply NET_PKT_TIMESTAMP
+	imply NET_IPV6_ND # enable Neighbor Discovery to handle Router Advertisements
+	imply NET_IPV6_NBR_CACHE
+	imply NET_STATISTICS_IPV6
+	imply NET_STATISTICS_USER_API
+
+config CHIP_WIFI_CONNECTION_RECOVERY_MINIMUM_INTERVAL
+	int "Define the minimum connection recovery time interval in milliseconds"
+	depends on CHIP_WIFI
+	default 500
+	help
+	  Specifies the minimum connection recovery interval (in milliseconds).
+
+config CHIP_WIFI_CONNECTION_RECOVERY_MAXIMUM_INTERVAL
+	int "Define the maximum connection recovery time interval in milliseconds"
+	depends on CHIP_WIFI
+	default 3600000 # 1 hour
+	help
+	  Specifies the maximum connection recovery interval (in milliseconds).
+
+config CHIP_WIFI_CONNECTION_RECOVERY_MAX_RETRIES_NUMBER
+	int "Define the maximum amount of connection recovery occurrences"
+	depends on CHIP_WIFI
+	default 0
+	help
+	  Specifies the maximum number of connection recovery attempts.
+	  If set to 0, no limitation is applied and attempts
+	  to recover the connection are performed indefinitely.
+
+config CHIP_WIFI_CONNECTION_RECOVERY_JITTER
+	int "Define the connection recovery jitter in milliseconds"
+	depends on CHIP_WIFI
+	default 2000
+	help
+	  Specifies the maximum connection recovery jitter interval (in milliseconds).
+	  Once the wait time reaches the current maximum value (defined by CHIP_WIFI_CONNECTION_RECOVERY_MAXIMUM_INTERVAL),
+	  a random jitter interval is added to it to avoid periodicity. The random jitter is selected
+	  within range [-JITTER; +JITTER].
+
+
 # MCU Manager and SMP configuration
-config MCUMGR
-	bool
-	default y
-
-config MCUMGR_GRP_IMG
-	bool
-	default y
-
-config MCUMGR_GRP_OS
-	bool
-	default y
-
-config MCUMGR_TRANSPORT_BT
-	bool
-	default y
-
-choice MCUMGR_TRANSPORT_BT_PERM
-	default MCUMGR_TRANSPORT_BT_PERM_RW
-endchoice
-
-config MCUMGR_TRANSPORT_NETBUF_COUNT
-	int
-	default 6
+#config MCUMGR
+#	bool
+#	default y
+#
+#config MCUMGR_GRP_IMG
+#	bool
+#	default y
+#
+#config MCUMGR_GRP_OS
+#	bool
+#	default y
+#
+#config MCUMGR_TRANSPORT_BT
+#	bool
+#	default y
+#
+#choice MCUMGR_TRANSPORT_BT_PERM
+#	default MCUMGR_TRANSPORT_BT_PERM_RW
+#endchoice
+#
+#config MCUMGR_TRANSPORT_NETBUF_COUNT
+#	int
+#	default 6
 
 # Increase BT MTU and RX buffer for big size DFU messages
 config BT_L2CAP_TX_MTU
@@ -53,16 +106,14 @@ config BT_BUF_ACL_RX_SIZE
 	int
 	default 502
 
-# Increase MCUMGR_TRANSPORT_NETBUF_SIZE, as it must be big enough to fit MAX MTU + overhead and for single-image DFU default is 384 B
-config MCUMGR_TRANSPORT_NETBUF_SIZE
-	int
-	default 1024
+## Increase MCUMGR_TRANSPORT_NETBUF_SIZE, as it must be big enough to fit MAX MTU + overhead and for single-image DFU default is 384 B
+#config MCUMGR_TRANSPORT_NETBUF_SIZE
+#	int
+#	default 1024
 
 # Increase system workqueue size, as SMP is processed within it
 config SYSTEM_WORKQUEUE_STACK_SIZE
 	int
 	default 2800
-
-endif # CHIP_DFU_OVER_BT_SMP
 
 endif # CHIP
