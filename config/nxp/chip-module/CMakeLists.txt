@@ -121,6 +121,8 @@ else()
     matter_add_gn_arg_string("chip_mdns" "none")
 endif()
 
+matter_add_gn_arg_bool("chip_device_config_thread_ftd" TRUE)
+
 
 # if (BOARD STREQUAL "native_sim")
 #     matter_add_gn_arg_string("target_cpu" "x86")

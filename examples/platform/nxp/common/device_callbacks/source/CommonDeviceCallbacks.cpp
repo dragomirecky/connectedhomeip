@@ -24,6 +24,7 @@
  **/
 #include "CommonDeviceCallbacks.h"
 #include "AppTaskBase.h"
+#include "platform/internal/BLEManager.h"
 
 #include <app-common/zap-generated/attributes/Accessors.h>
 #include <app-common/zap-generated/ids/Attributes.h>
@@ -186,7 +187,7 @@ void chip::NXP::App::CommonDeviceCallbacks::OnComissioningComplete(const chip::D
     {
         ChipLogDetail(DeviceLayer, "Provisioning complete, stopping BLE\n");
         ThreadStackMgrImpl().LockThreadStack();
-        PlatformMgrImpl().StopBLEConnectivity();
+        //PlatformMgrImpl().StopBLEConnectivity();
         ThreadStackMgrImpl().UnlockThreadStack();
     }
 #endif

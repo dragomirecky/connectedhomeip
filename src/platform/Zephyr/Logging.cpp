@@ -42,6 +42,8 @@ namespace Platform {
  * CHIP log output function.
  */
 
+#pragma GCC diagnostic ignored "-Wstack-usage="
+
 void ENFORCE_FORMAT(3, 0) LogV(const char * module, uint8_t category, const char * msg, va_list v)
 {
     char formattedMsg[CHIP_CONFIG_LOG_MESSAGE_MAX_SIZE];

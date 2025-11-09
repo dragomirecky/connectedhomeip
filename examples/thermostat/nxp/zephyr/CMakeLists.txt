@@ -68,6 +68,12 @@ target_sources(app
     ${EXAMPLE_PLATFORM_NXP_COMMON_DIR}/app_task/source/AppTaskZephyr.cpp
     ${EXAMPLE_PLATFORM_NXP_ZEPHYR_DIR}/factory_data/source/AppFactoryDataExample.cpp
     ${EXAMPLE_PLATFORM_NXP_COMMON_DIR}/icd/source/ICDUtil.cpp
+    ${CHIP_ROOT} ../../../../src/platform/Zephyr/ThreadStackManagerImpl.cpp
+    ${CHIP_ROOT} ../../../../src/platform/Zephyr/InetUtils.cpp
+    ${CHIP_ROOT} ../../../../src/platform/Zephyr/Logging.cpp
+    ${CHIP_ROOT} ../../../../src/platform/OpenThread/DnssdImpl.cpp
+    ${CHIP_ROOT} ../../../../src/platform/OpenThread/OpenThreadUtils.cpp
+    ${CHIP_ROOT} ../../../../src/platform/OpenThread/OpenThreadDnssdImpl.cpp
 )
 
 if(CONFIG_CHIP_CUSTOM_BLE_ADV_DATA)
