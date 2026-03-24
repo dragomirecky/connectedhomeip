@@ -66,7 +66,7 @@ namespace Internal {
 
 namespace {
 
-constexpr uint32_t kAdvertisingOptions = BT_LE_ADV_OPT_CONNECTABLE | BT_LE_ADV_OPT_ONE_TIME;
+constexpr uint32_t kAdvertisingOptions = BT_LE_ADV_OPT_CONN;
 constexpr uint8_t kAdvertisingFlags    = BT_LE_AD_GENERAL | BT_LE_AD_NO_BREDR;
 
 const bt_uuid_128 UUID128_CHIPoBLEChar_RX =

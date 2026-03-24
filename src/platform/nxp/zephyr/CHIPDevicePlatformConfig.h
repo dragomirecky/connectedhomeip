@@ -66,10 +66,12 @@
 #define CHIP_DEVICE_CONFIG_ENABLE_ETHERNET 0
 #endif
 
+#ifndef CHIP_DEVICE_CONFIG_ENABLE_CHIPOBLE
 #ifdef CONFIG_BT
 #define CHIP_DEVICE_CONFIG_ENABLE_CHIPOBLE CONFIG_BT
 #else
 #define CHIP_DEVICE_CONFIG_ENABLE_CHIPOBLE 0
+#endif
 #endif
 
 // ========== Platform-specific Configuration =========
