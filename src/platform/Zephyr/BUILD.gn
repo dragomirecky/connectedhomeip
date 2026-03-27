@@ -77,6 +77,22 @@ static_library("Zephyr") {
     }
   }
 
+  if (chip_enable_wifi) {
+    sources += [
+      "wifi/ConnectivityManagerImplWiFi.cpp",
+      "wifi/ConnectivityManagerImplWiFi.h",
+      "wifi/WiFiManager.cpp",
+      "wifi/WiFiManager.h",
+      "wifi/ZephyrWifiDriver.cpp",
+      "wifi/ZephyrWifiDriver.h",
+    ]
+
+    if (chip_mdns == "platform") {
+      sources += [ "DnssdImpl.cpp" ]
+      deps += [ "${chip_root}/src/lib/dnssd:platform_header" ]
+    }
+  }
+
   if (chip_malloc_sys_heap) {
     sources += [ "SysHeapMalloc.cpp" ]
   }
