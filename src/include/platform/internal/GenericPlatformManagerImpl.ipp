@@ -108,8 +108,16 @@ CHIP_ERROR GenericPlatformManagerImpl<ImplClass>::_InitChipStack()
     if (err != CHIP_NO_ERROR)
     {
         ChipLogError(DeviceLayer, "BLEManager initialization failed: %" CHIP_ERROR_FORMAT, err.Format());
+#if CHIP_DEVICE_CONFIG_ENABLE_WIFI
+        /* On combo WiFi+BLE chips (e.g. NXP RW612) the BLE HCI may not
+         * be ready if the radio firmware was loaded asynchronously.
+         * Continue without BLE — on-network commissioning still works. */
+        ChipLogProgress(DeviceLayer, "Continuing without BLE (WiFi commissioning available)");
+        err = CHIP_NO_ERROR;
+#else
+        SuccessOrExit(err);
+#endif
     }
-    SuccessOrExit(err);
 #endif
 
     // Initialize the Connectivity Manager object.
